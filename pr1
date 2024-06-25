@@ -1,6 +1,93 @@
 use bmiit2024
+
 db.createCollection("Students")
+
 db.Students.insert({enro:4,Fname:"Isha",Lname:"Motiyani",City:"Surat",gender:"F",contactno:9874563210,dob:"12/09/2000"})
 db.Students.insertMany([
     { enro: 102, Fname: "Anish", Lname: "Patel", City: "Valsad", gender: "M", contactno: 9632587410, dob: "06/01/2001" }, { enro: 103, Fname: "Kalp", Lname: "Shah", City: "Baroda", gender: "M", contactno: 9630125874, dob: "13/10/2000" },{ enro: 104, Fname: "Yash", Lname: "Bhakta", City: "Mumbai", gender: "M", contactno: 9987452103, dob: "08/05/2001" },{ enro: 84, Fname: "Aparana", Lname: "Mukherjee", City: "Surat", gender: "F", contactno: 8563247890, dob: "26/06/2001" },{ enro: 8, Fname: "Arjun", Lname: "Poduval", City: "Vapi", gender: "M", contactno: 8965230147, dob: "01/05/2001" },{ enro: 105, Fname: "Riya", Lname: "Agrawal", City: "Navsari", gender: "F", contactno: 6985321470, dob: "02/09/2000" },{ enro: 79, Fname: "Monis", Lname: "Khan", City: "Bardoli", gender: "M", contactno: 7895231053, dob: "23/11/2000" },{ enro: 106, Fname: "Abhishek", Lname: "Choksi", City: "Surat", gender: "M", contactno: 6985327410, dob: "18/07/2001" },{ enro: 49, Fname: "Om", Lname: "Patel", City: "Valsad", gender: "M", contactno: 9985632100, dob: "15/05/2001" }]);
 
+db.Students.find()
+
+db.Students.find({},{Fname : 1, Lname : 1 , _id:0 });
+
+db .Students . find( { }, { City:1 , _id:0 } );
+
+db.Students.distinct("City")
+
+db.Students.find({},{Fname : 1, Lname : 1 , dob:1, _id:0 });
+
+db.Students.find({ City: "Surat" })
+
+db.Students.find().sort({ enro: 1 })
+
+db.Students.find().limit(5)
+
+db.Students.find().sort({ _id: -1 }).limit(3)
+
+db.Students.find({ City: "Valsad", gender:"M" })
+
+db.Students.find().sort({_id:-1})
+
+db.Students.find({City:"Valsad"}).limit(4)
+
+db.Students.update({Fname:"Monis"}, {$set: {dob:"06/01/1999", contactno: 6852987530}})
+
+db.Students.find({Fname:"Om"},{dob : 1 , _id : 0})
+
+db.Students.insert({enro: 100, Fname:"Rohit", Lname:"Mehra", City:"Mumbai", dob: "24/03/2003" })
+
+db.Students.find({ Lname: "Patel", gender: "M" })
+
+db.students.insertOne({
+    enro: 35,
+    Fname: "Priyank",
+    Lname: "Mistry",
+    City: "Anand",
+    dob: "18/06/2000",
+    contactno: 9898754650,
+    gender:"M"
+})
+
+db.Students.find({enro:102})
+
+db.Students.find({gender:null})
+db.Students.find({$or:[{gender:null},{gender:0}]})
+
+db.Students.updateMany(
+    {
+        $or: [
+            { enro: { $exists: false } },
+            { Fname: { $exists: false } },
+            { Lname: { $exists: false } },
+            { City: { $exists: false } },
+            { dob: { $exists: false } },
+            { gender: { $exists: false } },
+            { contactno: { $exists: false } }
+        ]
+    },
+    {
+        $set: {
+            enro: 35,
+            Fname: "Priyank",
+            Lname: "Mistry",   
+            City: "Anand",     
+            dob: "18/06/2000", 
+            contactno: 9876541320,
+            gender: "M"
+        }
+    }
+)
+
+db.Students.updateMany({}, { $unset: { phone: "", firstName:"", lastName:"", city:"" } })
+
+db.Students.remove({City: "Vapi"})
+
+db.Students.find().skip(5).limit(5)
+
+db.Students.find( { Fname : /^.a/ } )
+
+db.Students.find( { Fname : /^M/ } )
+
+db.Students.count()
+
+db.Students.remove({})
