@@ -1,0 +1,64 @@
+Preperation Queries :
+use BMIITCIE12024
+db.createCollection("Department")
+db.Department.insertMany([{ID: "D1", NAME : "Nursing", WING: "D"},{ID: "D2", NAME : "Paramedical", WING: "A"}])
+db.Department.insertMany([{ID: "D3", NAME : "Outpatient", WING: "B"},{ID: "D4", NAME : "Inpatient", WING: "B"},{ID: "D5", NAME : "Medical", WING: "C"} ])
+
+db.createCollection("Surgeon")
+db.Surgeon.insertMany([{ID : "F101", NAME : "Ron", CITY : "Surat", SALARY : 25000, DEPT_ID : "D1"}, {ID : "F102", NAME : "Ronak", CITY : "Bardoli", SALARY : 22000, DEPT_ID : "D3"}, {ID : "F103", NAME : "Raj", CITY : "Surat", SALARY : 28000, DEPT_ID : "D2"}, {ID : "F104", NAME : "Rani", CITY : "Baroda", SALARY : 45000, DEPT_ID : "D1"}, {ID : "F105", NAME : "Rosnui", CITY : "Vapi", SALARY : 23000, DEPT_ID : "D3"}, {ID : "F106", NAME : "Ronit", CITY : "Navsari", SALARY : 42000, DEPT_ID : "D5"}])
+
+
+CIE Queries : 
+1) Show only the name with salary of all the surgeons. 01
+db.Surgeon.find({},{NAME: 1, SALARY:1, _id:0})
+
+2) 
+db.Surgeon.distinct("CITY")
+
+3)
+db.Surgeon.find({NAME: /^.a/})
+
+4)
+
+
+5)
+db.Surgeon.updateMany({}, {$set:{GENDER: "M"}})
+
+6)
+db.Surgeon.updateMany({CITY: "Surat"}, {$set:{CITY:"Mumbai"}})
+
+7)
+db.Surgeon.insert({ID:"F108", NAME: "Rajal", GENDER:"F", SALARY: 45000, DEPT_ID: "D4"})
+
+8)
+db.Surgeon.aggregate({ $group: { _id:0 , "Average" : { $avg : '$SALARY' } } } );
+
+9)
+db.Surgeon.find({SALARY: {$gt:30000}},{_id:0})
+
+10)
+db.Department.find().sort({"NAME":-1})
+
+11)
+db.Surgeon.find({$and:[{"CITY": {$ne:"Vapi"}},{"CITY": {$ne:"Mumbai"}}]})
+
+12)
+db.Surgeon.find({"CITY":{$ne:null}})
+
+13)
+db.Surgeon.find({}).count()
+
+14)
+db.Surgeon.find({$or:[{"SALARY":20000},{"SALARY":23000},{"SALARY":40000}]}, {NAME: 1, _id:0, SALARY:1})
+
+15)
+db.Surgeon.find().sort("SALARY").limit(3)
+
+16)
+db.Surgeon.remove({"DEPT_ID": "D3"})
+
+17)
+db.Surgeon.find({$and:[{"GENDER": "F"}, $or:[{"CITY": "Mumbai"},{"CITY": "Vapi"}]]})
+
+18)
+db.Surgeon.remove()
