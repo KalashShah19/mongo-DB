@@ -1,0 +1,88 @@
+use BMIITCIE22024;
+db.createCollection("Collection_Company");
+
+db.Collection_Company.insert({ 
+    "ID" : "C101",
+    "Name" : "TechAsender",
+    "Address": 
+        [ { "Building_Name" : "Dream Hub" , "Floot" : 3 , "Shop_No" : 305 }], 
+    "City" : "Surat", 
+    "No_of_Years" : 12, 
+    "Grades" : [ { "Grade" : 5 , "Rating" : 6 }],
+    })
+
+db.Collection_Company.insert({ 
+    "ID" : "C102",
+    "Name" : "SHARK",
+    "Address": 
+        [ { "Building_Name" : "Dream Hub" , "Floot" : 3 , "Shop_No" : 305 }], 
+    "City" : "Bardoli", 
+    "No_of_Years" : 7, 
+    "Grades" : [ { "Grade" : 5 , "Rating" : 6 }],
+    })
+
+db.Collection_Company.insert({ 
+    "ID" : "C103",
+    "Name" : "NJ",
+    "Address": 
+        [ { "Building_Name" : "Dream Hub" , "Floot" : 3 , "Shop_No" : 305 }], 
+    "City" : "Surat", 
+    "No_of_Years" : 18, 
+    "Grades" : [ { "Grade" : 5 , "Rating" : 7 }],
+    })
+
+db.Collection_Company.insert({ 
+    "ID" : "C104",
+    "Name" : "LaNet",
+    "Address": 
+        [ { "Building_Name" : "Dream Hub" , "Floot" : 3 , "Shop_No" : 305 }], 
+    "City" : "Rajasthan", 
+    "No_of_Years" : 8, 
+    "Grades" : [ { "Grade" : 5 , "Rating" : 6 }],
+    })
+
+db.Collection_Company.insert({ 
+    "ID" : "C105",
+    "Name" : "LogicWind",
+    "Address": 
+        [ { "Building_Name" : "Dream Hub" , "Floot" : 3 , "Shop_No" : 305 }], 
+    "City" : "Vapi", 
+    "No_of_Years" : 11, 
+    "Grades" : [ { "Grade" : 5 , "Rating" : 6 }],
+    })
+
+db.Collection_Company.find()
+
+mongoexport --collection=Collection_Company -d BMIITCIE22024 --out=Documents/company.json
+
+db.Collection_Company.find({"No_of_Years" :{$gt : 10}}).sort({"No_of_Years"})
+
+db.Collection_Company.aggregate([
+    { 
+      $match: { 
+        "No_of_Years" : {$gt : 10}
+      } 
+    },
+    {
+      $group: { 
+
+      }
+    },
+    { $sort: { 'No_of_Years': 1 } }
+  ])
+
+  db.Collection_Company.aggregate([ 
+    { "$group": { 
+        "_id": null,
+        "max": { "$max": "$No_of_Years" }, 
+        "min": { "$min": "$No_of_Years" },
+    }}
+])
+
+db.Collection_Company.find({},{_id:0, "Name":1, "Grades":1})
+
+mongoimport -collection=Company -d BMIITCIE22024 company.json
+
+mongoimport --db BMIITCIE22024 --collection Company --file /Users/bmiit/Documents/BDA CIE 2/company.json
+
+mongoimport --db BMIITCIE22024 --collection Company < /Users/bmiit/Documents/BDA CIE 2/company.json

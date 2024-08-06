@@ -1,0 +1,5 @@
+{"_id":{"$oid":"66b1c123ff8ca8e39c4c3c64"},"ID":"C101","Name":"TechAsender","Address":[{"Building_Name":"Dream Hub","Floot":3,"Shop_No":305}],"City":"Surat","No_of_Years":12,"Grades":[{"Grade":5,"Rating":6}]}
+{"_id":{"$oid":"66b1c1bcff8ca8e39c4c3c65"},"ID":"C102","Name":"SHARK","Address":[{"Building_Name":"Dream Hub","Floot":3,"Shop_No":305}],"City":"Bardoli","No_of_Years":7,"Grades":[{"Grade":5,"Rating":6}]}
+{"_id":{"$oid":"66b1c1bcff8ca8e39c4c3c66"},"ID":"C103","Name":"NJ","Address":[{"Building_Name":"Dream Hub","Floot":3,"Shop_No":305}],"City":"Surat","No_of_Years":18,"Grades":[{"Grade":5,"Rating":7}]}
+{"_id":{"$oid":"66b1c1bdff8ca8e39c4c3c67"},"ID":"C104","Name":"LaNet","Address":[{"Building_Name":"Dream Hub","Floot":3,"Shop_No":305}],"City":"Rajasthan","No_of_Years":8,"Grades":[{"Grade":5,"Rating":6}]}
+{"_id":{"$oid":"66b1c1bdff8ca8e39c4c3c68"},"ID":"C105","Name":"LogicWind","Address":[{"Building_Name":"Dream Hub","Floot":3,"Shop_No":305}],"City":"Vapi","No_of_Years":11,"Grades":[{"Grade":5,"Rating":6}]}
