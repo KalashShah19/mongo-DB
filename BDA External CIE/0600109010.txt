@@ -1,0 +1,170 @@
+use EBDA2024;
+
+db.createCollection('Department');
+
+db.createCollection('Employee');
+
+db.Department.insertMany([
+  { DID: "D1", DNAME: "Purchase" },
+  { DID: "D2", DNAME: "Production" },
+  { DID: "D3", DNAME: "Marketing" },
+  { DID: "D4", DNAME: "Sales" },
+  { DID: "D5", DNAME: "Accounting" }
+]);
+
+db.Employee.insertMany([
+  {
+    ID: "E1002",
+    NAME: "Bhavik",
+    Address: {
+      "Building Name": "Tulsi",
+      "Floor": "9",
+      "Flat No.": "901"
+    },
+    CITY: "Surat",
+    GENDER: "M",
+    DOJ: "2014-01-04",
+    DCODE: "D2",
+    SALARY: 75000
+  },
+  {
+    ID: "E1003",
+    NAME: "Falak",
+    Address: {
+      "Building Name": "Ashiyana",
+      "Floor": "5",
+      "Flat No.": "505"
+    },
+    CITY: "Valsad",
+    GENDER: "M",
+    DOJ: "2010-02-06",
+    DCODE: "D1",
+    SALARY: 65000
+  },
+  {
+    ID: "E1006",
+    NAME: "Amish",
+    Address: {
+      "Building Name": "Supreme",
+      "Floor": "3",
+      "Flat No.": "303"
+    },
+    CITY: "Surat",
+    GENDER: "M",
+    DOJ: "2016-02-14",
+    DCODE: "D4",
+    SALARY: 45000
+  },
+  {
+    ID: "E1008",
+    NAME: "Priya",
+    Address: {
+      "Building Name": "Kalpataru",
+      "Floor": "9",
+      "Flat No.": "909"
+    },
+    CITY: "Vapi",
+    GENDER: "F",
+    DOJ: "2018-01-01",
+    DCODE: "D1",
+    SALARY: 36500
+  },
+  {
+    ID: "E1009",
+    NAME: "Rohit",
+    Address: {
+      "Building Name": "Tulsi A",
+      "Floor": "9",
+      "Flat No.": "1"
+    },
+    CITY: "Bardoli",
+    GENDER: "M",
+    DOJ: "2015-10-25",
+    DCODE: "D4",
+    SALARY: 45000
+  },
+  {
+    ID: "E1001",
+    NAME: "Mansi",
+    Address: {
+      "Building Name": "Laxmi",
+      "Floor": "7",
+      "Flat No.": "705"
+    },
+    CITY: "Vapi",
+    GENDER: "F",
+    DOJ: "2009-12-12",
+    DCODE: "D2",
+    SALARY: 74000
+  },
+  {
+    ID: "E2004",
+    NAME: "Maggie",
+    Address: {
+      "Building Name": "Crystal",
+      "Floor": "4",
+      "Flat No.": "404"
+    },
+    CITY: "Surat",
+    GENDER: "F",
+    DOJ: "2009-01-23",
+    DCODE: "D5",
+    SALARY: 35000
+  }
+]);
+
+1. Find the detailed collection of female employees who are from “Vapi”.
+-> db.Employee.find({GENDER: "F", CITY: "Vapi"});
+
+2. Show the employee names with its city and salary, which are coming from “Surat” and having less than 40,000 salaries.
+-> db.Employee.find({ CITY: "Surat", SALARY: { $lt: 40000 }}, { NAME: 1, CITY: 1, SALARY: 1, _id: 0 });
+
+3. Find top three employees collection’s names with salary, which is having more than 50000 salaries.
+-> db.Employee.find({SALARY: { $gt: 50000 }},{ NAME : 1, SALARY : 1 , _id : 0 }).sort({ SALARY : -1 }).limit(3);
+
+4. Calculate the average salary of “Purchase” and “Sales” department in a single query.
+-> db.Employee.aggregate([
+{
+    $match: { 
+        DCODE: { $in: ["D1", "D4"] }
+    }
+   },
+   {
+    $group: {
+        _id: "$DCODE",
+        averageSalary: { $avg: "$SALARY" }
+    }
+   }
+]);
+
+5. Count total number of employees from each department.
+-> db.Employee.aggregate([{ $group : { _id : "$DCODE", employeeCount : { $sum : 1 }}}]);
+
+6. Export all the collections in JSON format.
+-> mongoexport --db=EBDA2024 --collection=Employee --out=Downloads/Employee.json --jsonArray;
+-> mongoexport --db=EBDA2024 --collection=Department --out=Downloads/Department.json --jsonArray;
+
+7. Modify the city of employees to Navsari, whose city is Bardoli and Valsad.
+-> db.Employee.updateMany(
+  {
+    CITY : { $in : ["Bardoli", "Valsad"] }
+  },
+  {
+    $set : { CITY : "Navsari" }
+  }
+);
+
+8. Show the highest salary of employees form each department individually.
+-> db.Employee.aggregate([{ $group : { _id : "$DCODE" , highestSalary : { $max : "$SALARY" }}}]);
+
+9. Find the details of employees, who are not from ‘Marketing’ and ‘Production’ department.
+-> db.Employee.find({ DCODE : { $nin : [ "D3" , "D2" ] }}, { _id: 0 });
+
+10. Display all the details of employees in alphabetic order, who are from ‘Surat’.
+-> db.Employee.find({ CITY : "Surat" }).sort({ NAME : 1 });
+
+11. Display all the employee’s details, whose name contains "i" in their name.
+-> db.Employee.find({ NAME : { $regex : "i" }});
+
+12. Remove all the collection of those employees, whose department is ‘Accounting’.
+-> db.Employee.deleteMany({ DCODE : "D5" });

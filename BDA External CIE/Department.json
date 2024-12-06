@@ -1,0 +1,37 @@
+[
+    {
+        "_id": {
+            "$oid": "6752710e7e1d24a496638e7e"
+        },
+        "DID": "D1",
+        "DNAME": "Purchase"
+    },
+    {
+        "_id": {
+            "$oid": "6752710e7e1d24a496638e7f"
+        },
+        "DID": "D2",
+        "DNAME": "Production"
+    },
+    {
+        "_id": {
+            "$oid": "6752710e7e1d24a496638e80"
+        },
+        "DID": "D3",
+        "DNAME": "Marketing"
+    },
+    {
+        "_id": {
+            "$oid": "6752710e7e1d24a496638e81"
+        },
+        "DID": "D4",
+        "DNAME": "Sales"
+    },
+    {
+        "_id": {
+            "$oid": "6752710e7e1d24a496638e82"
+        },
+        "DID": "D5",
+        "DNAME": "Accounting"
+    }
+]

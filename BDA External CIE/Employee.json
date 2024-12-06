@@ -1,0 +1,121 @@
+[
+    {
+        "_id": {
+            "$oid": "675273757e1d24a496638e83"
+        },
+        "ID": "E1002",
+        "NAME": "Bhavik",
+        "Address": {
+            "Building Name": "Tulsi",
+            "Floor": "9",
+            "Flat No.": "901"
+        },
+        "CITY": "Surat",
+        "GENDER": "M",
+        "DOJ": "2014-01-04",
+        "DCODE": "D2",
+        "SALARY": 75000
+    },
+    {
+        "_id": {
+            "$oid": "675273757e1d24a496638e84"
+        },
+        "ID": "E1003",
+        "NAME": "Falak",
+        "Address": {
+            "Building Name": "Ashiyana",
+            "Floor": "5",
+            "Flat No.": "505"
+        },
+        "CITY": "Valsad",
+        "GENDER": "M",
+        "DOJ": "2010-02-06",
+        "DCODE": "D1",
+        "SALARY": 65000
+    },
+    {
+        "_id": {
+            "$oid": "675273757e1d24a496638e85"
+        },
+        "ID": "E1006",
+        "NAME": "Amish",
+        "Address": {
+            "Building Name": "Supreme",
+            "Floor": "3",
+            "Flat No.": "303"
+        },
+        "CITY": "Surat",
+        "GENDER": "M",
+        "DOJ": "2016-02-14",
+        "DCODE": "D4",
+        "SALARY": 45000
+    },
+    {
+        "_id": {
+            "$oid": "675273757e1d24a496638e86"
+        },
+        "ID": "E1008",
+        "NAME": "Priya",
+        "Address": {
+            "Building Name": "Kalpataru",
+            "Floor": "9",
+            "Flat No.": "909"
+        },
+        "CITY": "Vapi",
+        "GENDER": "F",
+        "DOJ": "2018-01-01",
+        "DCODE": "D1",
+        "SALARY": 36500
+    },
+    {
+        "_id": {
+            "$oid": "675273757e1d24a496638e87"
+        },
+        "ID": "E1009",
+        "NAME": "Rohit",
+        "Address": {
+            "Building Name": "Tulsi A",
+            "Floor": "9",
+            "Flat No.": "1"
+        },
+        "CITY": "Bardoli",
+        "GENDER": "M",
+        "DOJ": "2015-10-25",
+        "DCODE": "D4",
+        "SALARY": 45000
+    },
+    {
+        "_id": {
+            "$oid": "675273757e1d24a496638e88"
+        },
+        "ID": "E1001",
+        "NAME": "Mansi",
+        "Address": {
+            "Building Name": "Laxmi",
+            "Floor": "7",
+            "Flat No.": "705"
+        },
+        "CITY": "Vapi",
+        "GENDER": "F",
+        "DOJ": "2009-12-12",
+        "DCODE": "D2",
+        "SALARY": 74000
+    },
+    {
+        "_id": {
+            "$oid": "675273757e1d24a496638e89"
+        },
+        "ID": "E2004",
+        "NAME": "Maggie",
+        "Address": {
+            "Building Name": "Crystal",
+            "Floor": "4",
+            "Flat No.": "404"
+        },
+        "CITY": "Surat",
+        "GENDER": "F",
+        "DOJ": "2009-01-23",
+        "DCODE": "D5",
+        "SALARY": 35000
+    }
+]
